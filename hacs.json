@@ -1,0 +1,9 @@
+{
+  "name": "Konnwei Battery Monitor",
+  "country": "FI",
+  "homeassistant": "2024.1.0",
+  "content_in_root": false,
+  "hide_default_branch": true,
+  "zip_release": true,
+  "filename": "konnwei_battery_monitor.zip"
+}

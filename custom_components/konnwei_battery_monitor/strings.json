@@ -1,0 +1,69 @@
+{
+  "config": {
+    "step": {
+      "bluetooth_confirm": {
+        "title": "Discovered Konnwei Battery Monitor",
+        "description": "Do you want to set up {name}?"
+      },
+      "user": {
+        "title": "Select Konnwei Battery Monitor",
+        "description": "Select a discovered device to set up.",
+        "data": {
+          "address": "Device"
+        }
+      },
+      "confirm": {
+        "title": "Configure Battery Settings",
+        "description": "Configure battery type and monitoring settings for {name}.",
+        "data": {
+          "battery_type": "Battery Type",
+          "voltage_min": "Minimum Voltage (V)",
+          "voltage_max": "Maximum Voltage (V)",
+          "poll_interval": "Update Interval (seconds)"
+        },
+        "data_description": {
+          "battery_type": "Select the battery chemistry or use custom voltage range",
+          "voltage_min": "Voltage at 0% charge (required for custom type)",
+          "voltage_max": "Voltage at 100% charge (required for custom type)",
+          "poll_interval": "How often to poll the device for updates (60-3600 seconds)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to device",
+      "custom_voltage_required": "Custom battery type requires both minimum and maximum voltage",
+      "invalid_voltage_range": "Maximum voltage must be greater than minimum voltage",
+      "voltage_out_of_range": "Voltage values must be between 1V and 60V",
+      "unknown": "Unexpected error occurred"
+    },
+    "abort": {
+      "already_configured": "This device is already configured",
+      "no_devices_found": "No Konnwei devices found"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Battery Monitor Options",
+        "description": "Configure battery type and monitoring settings.",
+        "data": {
+          "battery_type": "Battery Type",
+          "voltage_min": "Minimum Voltage (V)",
+          "voltage_max": "Maximum Voltage (V)",
+          "poll_interval": "Update Interval (seconds)"
+        },
+        "data_description": {
+          "battery_type": "Select the battery chemistry or use custom voltage range",
+          "voltage_min": "Voltage at 0% charge (required for custom type)",
+          "voltage_max": "Voltage at 100% charge (required for custom type)",
+          "poll_interval": "How often to poll the device for updates (60-3600 seconds)"
+        }
+      }
+    },
+    "error": {
+      "custom_voltage_required": "Custom battery type requires both minimum and maximum voltage",
+      "invalid_voltage_range": "Maximum voltage must be greater than minimum voltage",
+      "voltage_out_of_range": "Voltage values must be between 1V and 60V"
+    }
+  }
+}

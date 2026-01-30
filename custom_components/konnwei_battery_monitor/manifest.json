@@ -1,0 +1,19 @@
+{
+  "domain": "konnwei_battery_monitor",
+  "name": "Konnwei Battery Monitor",
+  "codeowners": ["@geekuality"],
+  "config_flow": true,
+  "dependencies": ["bluetooth"],
+  "documentation": "https://github.com/geekuality/konnwei-battery-monitor",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/geekuality/konnwei-battery-monitor/issues",
+  "requirements": ["bleak>=0.21.0"],
+  "bluetooth": [
+    {
+      "local_name": "*",
+      "connectable": true
+    }
+  ],
+  "version": "0.1.0"
+}
