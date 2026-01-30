@@ -48,6 +48,11 @@ class KonnweiConfigFlow(ConfigFlow, domain=DOMAIN):
             discovery_info: Bluetooth discovery data
         """
         address = discovery_info.address
+
+        # Only accept devices with Konnwei MAC prefix
+        if not address.upper().startswith(MAC_PREFIX):
+            return self.async_abort(reason="not_supported")
+
         await self.async_set_unique_id(address)
         self._abort_if_unique_id_configured()
 
