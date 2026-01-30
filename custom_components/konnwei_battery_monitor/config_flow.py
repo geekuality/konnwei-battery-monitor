@@ -57,8 +57,14 @@ class KonnweiConfigFlow(ConfigFlow, domain=DOMAIN):
         self._abort_if_unique_id_configured()
 
         self._discovery_info = discovery_info
+        # Clean device name by stripping null bytes and non-printable characters
+        device_name = discovery_info.name or address
+        if discovery_info.name:
+            device_name = "".join(
+                c for c in discovery_info.name if c.isprintable()
+            ).strip() or address
         self.context["title_placeholders"] = {
-            "name": discovery_info.name or address,
+            "name": device_name,
         }
 
         return await self.async_step_confirm()
@@ -130,11 +136,13 @@ class KonnweiConfigFlow(ConfigFlow, domain=DOMAIN):
                 poll_interval = user_input.get(CONF_POLL_INTERVAL, DEFAULT_POLL_INTERVAL)
 
                 address = self.unique_id
-                name = (
-                    self._discovery_info.name
-                    if self._discovery_info
-                    else f"Battery Monitor {address}"
-                )
+                if self._discovery_info and self._discovery_info.name:
+                    # Clean device name by stripping null bytes and non-printable characters
+                    name = "".join(
+                        c for c in self._discovery_info.name if c.isprintable()
+                    ).strip() or f"Battery Monitor {address}"
+                else:
+                    name = f"Battery Monitor {address}"
 
                 return self.async_create_entry(
                     title=name,
@@ -151,7 +159,13 @@ class KonnweiConfigFlow(ConfigFlow, domain=DOMAIN):
                 )
 
         address = self.unique_id
-        name = self._discovery_info.name if self._discovery_info else f"Battery Monitor {address}"
+        if self._discovery_info and self._discovery_info.name:
+            # Clean device name by stripping null bytes and non-printable characters
+            name = "".join(
+                c for c in self._discovery_info.name if c.isprintable()
+            ).strip() or f"Battery Monitor {address}"
+        else:
+            name = f"Battery Monitor {address}"
 
         schema = vol.Schema(
             {

@@ -116,7 +116,7 @@ class TestParseStatusResponse:
 
     def test_parse_valid_status_response(self):
         """Test parsing valid status response."""
-        # Valid response: 12.62V, battery OK, charging
+        # Valid response: 12.62V, battery OK, charging (0x01 = charging)
         data = bytes.fromhex("24240E004B0BEE04020108B40D0A")
         result = protocol.parse_status_response(data)
 

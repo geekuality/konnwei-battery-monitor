@@ -1,7 +1,7 @@
 """Base entity for Konnwei Battery Monitor."""
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.helpers.device_registry import DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH, DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN
@@ -33,4 +33,5 @@ class KonnweiEntity(CoordinatorEntity[KonnweiCoordinator]):
             manufacturer="Konnwei",
             model=coordinator.device_info.get("model"),
             sw_version=coordinator.device_info.get("fw_version"),
+            connections={(CONNECTION_BLUETOOTH, self._address)},
         )

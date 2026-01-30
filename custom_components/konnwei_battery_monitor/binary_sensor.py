@@ -73,4 +73,7 @@ class ChargingSensor(KonnweiEntity, BinarySensorEntity):
         """Return True if charging."""
         if not self.coordinator.data:
             return None
-        return self.coordinator.data.get("charging")
+        charging = self.coordinator.data.get("charging")
+        if charging is None:
+            return None
+        return not charging
